@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\msztu\\Desktop\\UJ_ZIMOWY_25\\PEGAZ\\PCSHARP\\c_sharp_zadnia_cw\\1\\zad_1\\zad_1.csproj",
+      "projectUniqueName": "C:\\Users\\msztu\\RiderProjects\\c_sharp_zadnia_cw\\1\\zad_1\\zad_1.csproj",
       "projectName": "zad_1",
-      "projectPath": "C:\\Users\\msztu\\Desktop\\UJ_ZIMOWY_25\\PEGAZ\\PCSHARP\\c_sharp_zadnia_cw\\1\\zad_1\\zad_1.csproj",
+      "projectPath": "C:\\Users\\msztu\\RiderProjects\\c_sharp_zadnia_cw\\1\\zad_1\\zad_1.csproj",
       "packagesPath": "C:\\Users\\msztu\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\msztu\\Desktop\\UJ_ZIMOWY_25\\PEGAZ\\PCSHARP\\c_sharp_zadnia_cw\\1\\zad_1\\obj\\",
+      "outputPath": "C:\\Users\\msztu\\RiderProjects\\c_sharp_zadnia_cw\\1\\zad_1\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
