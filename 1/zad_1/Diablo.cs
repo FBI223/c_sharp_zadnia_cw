@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 
 
 
-public class NonPlayerCharacter
+public class NonPlayerCharacter 
 {
     public string Name { get; set; }
     private List<NpcDialogPart> dialogParts = new List<NpcDialogPart>();
@@ -33,9 +33,6 @@ public class Hero
     public int Gold { get; set; }
     public int Experience { get; set; }
     public List<Mission> MissionJournal { get; set; } // A list of missions
-    
-    private List<string> CompletedMissionsWithRewards = new List<string>(); // Śledzenie misji, za które odebrano nagrodę
-
 
     public Hero(string nazwa, EHeroClass klassa)
     {
@@ -44,49 +41,10 @@ public class Hero
         this.Gold = 0; // Złoto startowe
         this.Experience = 0; // Początkowe doświadczenie
         this.MissionJournal = new List<Mission>(); // Make sure it's initialized
-        this.CompletedMissionsWithRewards = new List<string>();
     }
-
-    public void AddMission(Mission mission)
-    {
-        if (!MissionJournal.Any(m => m.Name == mission.Name)) // Sprawdzenie, czy misja już istnieje
-        {
-            MissionJournal.Add(mission);
-        }
-        else
-        {
-            Console.WriteLine($"Misja '{mission.Name}' jest już aktywna.");
-        }
-    }
-    public void CompleteMission(string missionName)
-    {
-        Mission mission = MissionJournal.FirstOrDefault(m => m.Name == missionName);
-        if (mission != null)
-        {
-            mission.Complete();
-            Console.WriteLine($"Misja '{missionName}' została zakończona.");
-        }
-        else
-        {
-            Console.WriteLine($"Misja '{missionName}' nie została znaleziona w dzienniku.");
-        }
-    }
-    // Inne właściwości i metody bohatera...
-
-
-    public bool HasReceivedRewardForMission(string missionName)
-    {
-        return CompletedMissionsWithRewards.Contains(missionName);
-    }
-
-    public void MarkMissionRewardReceived(string missionName)
-    {
-        if (!CompletedMissionsWithRewards.Contains(missionName))
-        {
-            CompletedMissionsWithRewards.Add(missionName);
-        }
-    }
-
+    
+    
+    
     public void GainExperience(int amount)
     {
         this.Experience += amount;
@@ -194,7 +152,7 @@ public class LocationManager
 public class DialogManager
 {
 
-
+    /*
     public static void StartFightWithMephisto(Hero hero, NonPlayerCharacter mephisto, Location location)
     {
         Console.Clear();
@@ -241,13 +199,15 @@ public class DialogManager
         Console.ReadKey();
     }
     
-public static DialogNode InitializeBaalDialog(Hero hero, NonPlayerCharacter baal, int gold, int experience, Location location)
+    */
+    
+public static DialogNode InitializeBaalDialog()
 {
     DialogNode startNode = new DialogNode(new NpcDialogPart("Ośmieliłeś się stanąć przede mną, #HERONAME#? Przygotuj się na zniszczenie!"));
+    
 
     // Opcja wyzwania do walki
     DialogNode challengeBaal = new DialogNode(new NpcDialogPart("Zobaczymy, jak długo wytrzymasz w walce przeciwko mnie."));
-    challengeBaal.SetAction(() => StartFightWithBaal(hero, baal, location));
 
     // Ucieczka przed Baalem
     DialogNode escapeBaal = new DialogNode(new NpcDialogPart("Uciekasz? Słaby człowieku, nigdy nie będziesz godzien walki ze mną."));
@@ -261,30 +221,34 @@ public static DialogNode InitializeBaalDialog(Hero hero, NonPlayerCharacter baal
     
     // Pytanie o braci Baala (Diablo i Mephisto)
     DialogNode askAboutBrothers = new DialogNode(new NpcDialogPart("Moi bracia, Diablo i Mephisto, każdy ma swoją domenę. Razem dążymy do zapanowania nad światem."));
-    askAboutDestruction.AddResponse(new HeroDialogPart("Opowiedz mi o swoich braciach."), askAboutBrothers);
+    askAboutBaal.AddResponse(new HeroDialogPart("Opowiedz mi o swoich braciach."), askAboutBrothers);
     
-    askAboutBrothers.AddResponse(new HeroDialogPart("Wracam do pytania głównego."), startNode);
+    askAboutBrothers.AddResponse(new HeroDialogPart("Wracam do pytan."), askAboutBaal);
 
     // Powrót do głównego pytania
-    askAboutBaal.AddResponse(new HeroDialogPart("Wracam do pytania głównego."), startNode);
+    askAboutBaal.AddResponse(new HeroDialogPart("Wracam do pytania glownego."), startNode);
 
+    askAboutDestruction.AddResponse(new HeroDialogPart("Wracam do pytan") , askAboutBaal );
+    
     // Główne opcje dialogowe
+    
     startNode.AddResponse(new HeroDialogPart("Zamierzam cię pokonać!"), challengeBaal);
     startNode.AddResponse(new HeroDialogPart("Muszę się wycofać."), escapeBaal);
     startNode.AddResponse(new HeroDialogPart("Kim jesteś, Baalu?"), askAboutBaal);
     startNode.AddResponse(new HeroDialogPart("Opuść dialog."), new DialogNode(new NpcDialogPart("Powracasz do lokacji...")));
-
+    
+    
     return startNode;
 }
     
     
-public static DialogNode InitializeMephistoDialog(Hero hero, NonPlayerCharacter mephisto, int gold, int experience, Location location)
+public static DialogNode InitializeMephistoDialog()
 {
     DialogNode startNode = new DialogNode(new NpcDialogPart("Ah, #HERONAME#, przyszedłeś, by stawić czoła Panom Piekła? Jesteś gotów na swoją zgubę?"));
 
     // Opcja wyzwania do walki
     DialogNode challengeMephisto = new DialogNode(new NpcDialogPart("Bardzo dobrze! Zginiesz z ręki Pana Nienawiści, a twoja dusza będzie cierpieć przez wieczność."));
-    challengeMephisto.SetAction(() => StartFightWithMephisto(hero, mephisto, location));
+
 
     // Opcja negocjacji z Mephisto
     DialogNode parleyMephisto = new DialogNode(new NpcDialogPart("Wielkie słowa, śmiertelniku. Jednakże, może byś się przyłączył do mojej władzy, zamiast ginąć?"));
@@ -314,87 +278,11 @@ public static DialogNode InitializeMephistoDialog(Hero hero, NonPlayerCharacter 
     return startNode;
 }
 
-
-
-/*
-
-    public static DialogNode InitializeTyraelDialog(Hero hero, NonPlayerCharacter tyrael, int gold, int experience)
-{
-    // Główna gałąź dialogowa przed pokonaniem Baala
-    DialogNode startNode = new DialogNode(new NpcDialogPart("Witaj, #HERONAME#, jestem Archanioł Tyrael. Czy chcesz mi pomóc ocalić Tristram, pokonując Baala?"));
-
-    DialogNode agreeHelp = new DialogNode(new NpcDialogPart("Dziękuję! Twoja pomoc będzie nieoceniona."));
-    agreeHelp.SetAction(() => 
-    {
-        if (!hero.MissionJournal.Any(m => m.Name == "Pokonaj Baala"))
-        {
-            hero.AddMission(new Mission("Pokonaj Baala"));
-        }
-    });
-
-    DialogNode refuseHelp = new DialogNode(new NpcDialogPart("Zrozumiałem, wróć, gdy będziesz gotowy na ostateczne starcie."));
-
-    // Nagroda po pokonaniu Baala
-    DialogNode rewardNode = new DialogNode(new NpcDialogPart("Dziękuję za pokonanie Baala! Oto twoja nagroda: 10,000 punktów doświadczenia."));
-    rewardNode.SetAction(() => 
-    {
-        if (!hero.HasReceivedRewardForMission("Pokonaj Baala"))
-        {
-            hero.GainExperience(10000);  // Dodajemy 10,000 punktów doświadczenia
-            hero.MarkMissionRewardReceived("Pokonaj Baala");  // Zaznacz, że nagroda została odebrana
-        }
-    });
-
-    // Sprawdzamy, czy Baal został pokonany, jeśli tak, pokazujemy opcję nagrody
-    if (hero.MissionJournal.Any(m => m.Name == "Pokonaj Baala" && m.IsCompleted && !hero.HasReceivedRewardForMission("Pokonaj Baala")))
-    {
-        startNode.AddResponse(new HeroDialogPart("Pokonałem Baala. Czy mogę odebrać nagrodę?"), rewardNode);
-    }
-
-    // Menu informacji o Tyraelu oraz aniołach
-    DialogNode infoNode = new DialogNode(new NpcDialogPart("Jakie masz pytania o aniołach, Baalu lub mnie?"));
-
-    DialogNode askAboutTyrael = new DialogNode(new NpcDialogPart("Jestem Tyrael, Archanioł Sprawiedliwości. Strzegę ludzkości od wieków, walcząc o zachowanie równowagi między światłem a ciemnością."));
-    DialogNode askAboutAngels = new DialogNode(new NpcDialogPart("Aniołowie są obrońcami światła. Naszym zadaniem jest utrzymanie równowagi we wszechświecie i ochrona świata ludzi przed siłami ciemności."));
-    DialogNode askAboutBaal = new DialogNode(new NpcDialogPart("Baal, Pan Zniszczenia, to jeden z najpotężniejszych demonów, który pragnie zniszczyć wszystko, co stworzone. Jego zniszczenie to jedyny sposób na ocalenie świata."));
-    DialogNode askAboutMephisto = new DialogNode(new NpcDialogPart("Mephisto, Pan Nienawiści, to najstarszy z Trzech Pradawnych. Jest odpowiedzialny za rozprzestrzenianie nienawiści w sercach ludzi i demonów."));    
-
-    // Dodanie opcji powrotu do głównego menu
-    askAboutTyrael.AddResponse(new HeroDialogPart("Wracam do pytań."), infoNode);
-    askAboutAngels.AddResponse(new HeroDialogPart("Wracam do pytań."), infoNode);
-    askAboutBaal.AddResponse(new HeroDialogPart("Wracam do pytań."), infoNode);
-    askAboutMephisto.AddResponse(new HeroDialogPart("Wracam do pytań."), infoNode);
-
-    // Dodanie pytań w menu informacyjnym
-    infoNode.AddResponse(new HeroDialogPart("Kim jesteś, Tyraelu?"), askAboutTyrael);
-    infoNode.AddResponse(new HeroDialogPart("Opowiedz mi o aniołach."), askAboutAngels);
-    infoNode.AddResponse(new HeroDialogPart("Kim jest Baal?"), askAboutBaal);
-    infoNode.AddResponse(new HeroDialogPart("Kim jest Mephisto?"), askAboutMephisto);
-    infoNode.AddResponse(new HeroDialogPart("Powrót do głównego dialogu."), startNode);
-
-    // Standardowe odpowiedzi w dialogu
-    startNode.AddResponse(new HeroDialogPart("Tak, pomogę."), agreeHelp);
-    startNode.AddResponse(new HeroDialogPart("Nie, jestem zajęty."), refuseHelp);
-    startNode.AddResponse(new HeroDialogPart("Pytania o informacje."), infoNode);  // Opcja pytania o informacje
-    startNode.AddResponse(new HeroDialogPart("Opuść dialog."), new DialogNode(new NpcDialogPart("Powracasz do lokacji...")));
-
-    return startNode;
-}
-*/
-
-
-public static DialogNode InitializeTyraelDialogBeforeBaal(Hero hero, NonPlayerCharacter tyrael, int gold, int experience)
+public static DialogNode InitializeTyraelDialog()
 {
     DialogNode startNode = new DialogNode(new NpcDialogPart("Witaj, #HERONAME#, jestem Archanioł Tyrael. Czy chcesz mi pomóc ocalić Tristram, pokonując Baala?"));
 
     DialogNode agreeHelp = new DialogNode(new NpcDialogPart("Dziękuję! Twoja pomoc będzie nieoceniona."));
-    agreeHelp.SetAction(() => 
-    {
-        if (!hero.MissionJournal.Any(m => m.Name == "Pokonaj Baala"))
-        {
-            hero.AddMission(new Mission("Pokonaj Baala"));
-        }
-    });
 
     DialogNode refuseHelp = new DialogNode(new NpcDialogPart("Zrozumiałem, wróć, gdy będziesz gotowy na ostateczne starcie."));
 
@@ -429,41 +317,15 @@ public static DialogNode InitializeTyraelDialogBeforeBaal(Hero hero, NonPlayerCh
 }
 
 
-public static DialogNode InitializeTyraelDialogAfterBaal(Hero hero, NonPlayerCharacter tyrael, int gold, int experience)
-{
-    DialogNode startNode = new DialogNode(new NpcDialogPart("Dziękuję za uratowanie Tristram! Słyszałem, że Archanioł Gabriel ma kolejne zadanie dla ciebie."));
 
-    DialogNode askAboutGabriel = new DialogNode(new NpcDialogPart("Gabriel, Archanioł Światła, pragnie twojej pomocy w walce z Mephisto. Udasz się do niego?"));
-    askAboutGabriel.SetAction(() =>
-    {
-        // Direct player to Gabriel's mission if they haven't already received it
-        if (!hero.MissionJournal.Any(m => m.Name == "Pokonaj Mephisto"))
-        {
-            hero.AddMission(new Mission("Pokonaj Mephisto"));
-        }
-    });
-
-    startNode.AddResponse(new HeroDialogPart("Dziękuję, udam się do Gabriela."), askAboutGabriel);
-    startNode.AddResponse(new HeroDialogPart("Opuść dialog."), new DialogNode(new NpcDialogPart("Powracasz do lokacji...")));
-
-    return startNode;
-}
-
-
-    public static DialogNode InitializeGabrielDialog(Hero hero, NonPlayerCharacter gabriel, int gold, int experience, Location location)
+    public static DialogNode InitializeGabrielDialog()
 {
     // Główne pytanie o misję Mephisto
     DialogNode startNode = new DialogNode(new NpcDialogPart("Witaj, #HERONAME#. Potrzebuję twojej pomocy w walce z Mephisto. Czy podejmiesz się tej misji?"));
 
     // Dodanie misji po zaakceptowaniu
     DialogNode acceptMission = new DialogNode(new NpcDialogPart("Doskonale! Twoja odwaga zostanie wynagrodzona."));
-    acceptMission.SetAction(() =>
-    {
-        if (!hero.MissionJournal.Any(m => m.Name == "Pokonaj Mephisto"))
-        {
-            hero.AddMission(new Mission("Pokonaj Mephisto"));
-        }
-    });
+
 
     // Odrzucenie misji
     DialogNode refuseMission = new DialogNode(new NpcDialogPart("Rozumiem, to nie jest łatwe zadanie. Powróć, gdy będziesz gotowy."));
@@ -513,14 +375,7 @@ public class DialogNode
         NpcPart = npcPart;
         HeroResponses = new Dictionary<HeroDialogPart, DialogNode>();
     }
-
-    // Dodawanie odpowiedzi bohatera i powiązanego węzła dialogowego
-    // Add an action if needed
-    public void SetAction(Action action)
-    {
-        NodeAction = action;
-    }
-
+    
     public void AddResponse(HeroDialogPart heroResponse, DialogNode nextNode)
     {
         HeroResponses.Add(heroResponse, nextNode);
@@ -564,10 +419,7 @@ public class DialogPart : IDialogPart
     {
         Content = content;
     }
-    public virtual void Speak()
-    {
-        Console.WriteLine(Content);
-    }
+
 }
 
 
@@ -583,10 +435,7 @@ public class NpcDialogPart : DialogPart
     public NpcDialogPart(string content) : base(content)
     {
     }
-    public override void Speak()
-    {
-        Console.WriteLine("NPC: " + Content);
-    }
+    
 }
 
 public class HeroDialogPart : DialogPart
@@ -595,19 +444,10 @@ public class HeroDialogPart : DialogPart
     // Konstruktor przyjmujący treść dialogu i przekazujący ją do klasy bazowej
     public HeroDialogPart(string content) : base(content)
     {
+
     }
-    public override void Speak()
-    {
-        Console.WriteLine("Hero: " + Content);
-    }
+
 }
-
-
-
-
-
-
-
 
 
 
@@ -684,14 +524,7 @@ class Diablo
         {
             Console.WriteLine("Brak aktywnych misji.");
         }
-        else
-        {
-            foreach (var mission in hero.MissionJournal)
-            {
-                string status = mission.IsCompleted ? "Zakończona" : "Aktywna";
-                Console.WriteLine($"Misja: {mission.Name} - Status: {status}");
-            }
-        }
+        
 
         Console.WriteLine("=======================");
         Console.WriteLine("Naciśnij dowolny klawisz, aby wrócić.");
@@ -791,7 +624,6 @@ class Diablo
         }
     }
     // Metoda podróży do wybranej lokalizacji
-    // Metoda podróży do wybranej lokalizacji
     static void TravelToLocation(Location location, Hero hero)
     {
         bool stayInLocation = true;
@@ -809,6 +641,7 @@ class Diablo
             }
 
             string choice = Console.ReadLine();
+            
             if (choice == "0")
             {
                 stayInLocation = false; // Powrót do wyboru lokalizacji
@@ -817,21 +650,9 @@ class Diablo
             {
                 // Rozpocznij rozmowę z wybranym NPC
                 NonPlayerCharacter selectedNpc = location.Npcs[npcIndex - 1];
-
-                if (selectedNpc.Name == "Baal" && !hero.MissionJournal.Any(m => m.Name == "Pokonaj Baala"))
-                {
-                    Console.WriteLine("Nie możesz jeszcze walczyć z Baalem. Drzwi do krolestwa Baala sa zamkniete");
-                    Console.ReadKey();
-                }
-                else if (selectedNpc.Name == "Mephisto" && !hero.MissionJournal.Any(m => m.Name == "Pokonaj Mephisto"))
-                {
-                    Console.WriteLine("Nie możesz jeszcze walczyć z Mephisto. Most prowadzacy do Mephisto jest zamkniety.");
-                    Console.ReadKey();
-                }
-                else
-                {
+                
                     StartDialogWithNpc(hero, selectedNpc, location);
-                }
+                    Console.ReadKey();
             }
             else
             {
@@ -840,38 +661,6 @@ class Diablo
         }
     }
     
-
-    
-    /*
-    static void StartDialogWithNpc(Hero hero, NonPlayerCharacter npc, Location location)
-    {
-        Console.Clear();
-
-        if (location.name == "Tristram")
-        {
-            if (npc.Name == "Archanioł Tyrael")
-            {
-                StartDialog(DialogManager.InitializeTyraelDialog(hero, npc, hero.Gold, hero.Experience), hero, npc, 100, 500, location);
-            }
-            else if (npc.Name == "Archanioł Gabriel")
-            {
-                StartDialog(DialogManager.InitializeGabrielDialog(hero, npc, hero.Gold, hero.Experience,location), hero, npc, hero.Gold, hero.Experience, location);
-            }
-        }
-        else if (location.name == "Piekło")
-        {
-            if (npc.Name == "Baal")
-            {
-                StartDialog(DialogManager.InitializeBaalDialog(hero, npc, hero.Gold, hero.Experience, location), hero, npc, 0, 1000, location);
-            }
-            else if (npc.Name == "Mephisto")
-            {
-                StartDialog(DialogManager.InitializeMephistoDialog(hero, npc, hero.Gold, hero.Experience, location), hero, npc, 0, 1000, location);
-            }
-        }
-    }
-    
-    */
     
     
     static void StartDialogWithNpc(Hero hero, NonPlayerCharacter npc, Location location)
@@ -882,30 +671,24 @@ class Diablo
         {
             if (npc.Name == "Archanioł Tyrael")
             {
-                // Sprawdź, czy Baal został pokonany
-                if (hero.MissionJournal.Any(m => m.Name == "Pokonaj Baala" && m.IsCompleted))
-                {
-                    StartDialog(DialogManager.InitializeTyraelDialogAfterBaal(hero, npc, hero.Gold, hero.Experience), hero, npc, 100, 500, location);
-                }
-                else
-                {
-                    StartDialog(DialogManager.InitializeTyraelDialogBeforeBaal(hero, npc, hero.Gold, hero.Experience), hero, npc, 100, 500, location);
-                }
+                
+                StartDialog(DialogManager.InitializeTyraelDialog(), hero, npc, 100, 500, location);
+                
             }
             else if (npc.Name == "Archanioł Gabriel")
             {
-                StartDialog(DialogManager.InitializeGabrielDialog(hero, npc, hero.Gold, hero.Experience, location), hero, npc, hero.Gold, hero.Experience, location);
+                StartDialog(DialogManager.InitializeGabrielDialog(), hero, npc, hero.Gold, hero.Experience, location);
             }
         }
         else if (location.name == "Piekło")
         {
             if (npc.Name == "Baal")
             {
-                StartDialog(DialogManager.InitializeBaalDialog(hero, npc, hero.Gold, hero.Experience, location), hero, npc, 0, 1000, location);
+                StartDialog(DialogManager.InitializeBaalDialog(), hero, npc, 0, 1000, location);
             }
             else if (npc.Name == "Mephisto")
             {
-                StartDialog(DialogManager.InitializeMephistoDialog(hero, npc, hero.Gold, hero.Experience, location), hero, npc, 0, 1000, location);
+                StartDialog(DialogManager.InitializeMephistoDialog(), hero, npc, 0, 1000, location);
             }
         }
     }
