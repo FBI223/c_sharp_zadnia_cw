@@ -746,6 +746,7 @@ class Diablo
                 Console.WriteLine("Nieprawidłowy wybór klasy bohatera. Spróbuj ponownie.");
             }
         }
+        
 
         return chosenClass;
     }
