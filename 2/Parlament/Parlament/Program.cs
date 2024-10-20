@@ -18,7 +18,7 @@ namespace cw01
         {
             
             Random random = new Random();
-            int numberOfDeputies = random.Next(10, 21); // Zakres [20, 100]
+            int numberOfDeputies = random.Next(2, 101); // Zakres [2, 100]
             Console.WriteLine($"Liczba posłów: {numberOfDeputies}");
             List<Representative> representatives = new List<Representative>();
             Parliment parliment_logic = new Parliment();
@@ -46,6 +46,10 @@ namespace cw01
             // Zakończenie głosowania
             parliment_logic.StopVoting();
             
+            
+            // Wyświetlenie wyników głosowania
+            parliment_logic.DisplayVotingResults();
+            
             Console.WriteLine("");
             Console.WriteLine("Session Ended!");
             
@@ -55,6 +59,12 @@ namespace cw01
     }
     public class Parliment
     {
+        
+        // Liczniki głosów
+        private int yesVotes = 0;
+        private int noVotes = 0;
+        private int refrainVotes = 0;
+        
     
         public event EventHandler<VotingEventArgs> VoteSubmitted ;
         public event EventHandler VotingStarted;
@@ -63,6 +73,17 @@ namespace cw01
         // Nowe zdarzenie, które wydaje komendę do oddania głosów
         public event EventHandler VoteCommandGiven;
         
+        
+        
+        public void DisplayVotingResults()
+        {
+            Console.WriteLine("");
+            Console.WriteLine("Wyniki głosowania:");
+            Console.WriteLine($"Za: {yesVotes}");
+            Console.WriteLine($"Przeciw: {noVotes}");
+            Console.WriteLine($"Wstrzymujących się: {refrainVotes}");
+            Console.WriteLine("");
+        }
         
         public void StartVoting()
         {
@@ -94,6 +115,20 @@ namespace cw01
         
         public void GiveVote(VotingEventArgs args)
         {
+
+            switch (args.Vote)
+            {
+                case VoteOption.no :
+                    this.noVotes++;
+                    break;
+                case VoteOption.yes :
+                    this.yesVotes++;
+                    break;
+                case VoteOption.refrain :
+                    this.refrainVotes++;
+                    break;
+            }
+            
             VoteSubmitted?.Invoke(this, args); // Zgłaszanie zdarzenia oddania głosu
         }
 
@@ -147,6 +182,7 @@ namespace cw01
         }
         
 
+        
         // Metoda oddania głosu przez posła
         // Posłowie oddają głos w odpowiedzi na VotingStarted
         public void OnGiveVote(object sender, EventArgs e)
