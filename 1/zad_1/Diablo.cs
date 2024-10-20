@@ -3,18 +3,9 @@
 using System.Text.RegularExpressions;
 
 
-
 public class NonPlayerCharacter 
 {
     public string Name { get; set; }
-    private List<NpcDialogPart> dialogParts = new List<NpcDialogPart>();
-
-    public void AddDialog(NpcDialogPart part)
-    {
-        dialogParts.Add(part);
-    }
-    
-    
     
 }
 
@@ -32,7 +23,6 @@ public class Hero
     public EHeroClass klass;
     public int Gold { get; set; }
     public int Experience { get; set; }
-    public List<Mission> MissionJournal { get; set; } // A list of missions
 
     public Hero(string nazwa, EHeroClass klassa)
     {
@@ -40,7 +30,6 @@ public class Hero
         this.klass = klassa;
         this.Gold = 0; // Złoto startowe
         this.Experience = 0; // Początkowe doświadczenie
-        this.MissionJournal = new List<Mission>(); // Make sure it's initialized
     }
     
     
@@ -98,7 +87,7 @@ public class Location
     public int ile_npc;
     
     // Lista przechowująca NPC-ów
-    private List<NonPlayerCharacter> npcs = new List<NonPlayerCharacter>();
+    public List<NonPlayerCharacter> npcs = new List<NonPlayerCharacter>();
 
     // Getter, który udostępnia listę NPC-ów publicznie
     public List<NonPlayerCharacter> Npcs => npcs;
@@ -318,7 +307,7 @@ public static DialogNode InitializeTyraelDialog()
 
 
 
-    public static DialogNode InitializeGabrielDialog()
+public static DialogNode InitializeGabrielDialog()
 {
     // Główne pytanie o misję Mephisto
     DialogNode startNode = new DialogNode(new NpcDialogPart("Witaj, #HERONAME#. Potrzebuję twojej pomocy w walce z Mephisto. Czy podejmiesz się tej misji?"));
@@ -364,6 +353,8 @@ public static DialogNode InitializeTyraelDialog()
     
     
 }
+
+
 public class DialogNode
 {
     public NpcDialogPart NpcPart { get; set; }  // Wypowiedź NPC
@@ -450,13 +441,6 @@ public class HeroDialogPart : DialogPart
 }
 
 
-
-
-
-
-
-
-
 class Diablo
 {
     
@@ -477,10 +461,6 @@ class Diablo
             Console.Clear(); // Czyści ekran konsoli
             Console.WriteLine($"Witaj w grze {gameName}!");
             Console.WriteLine("[1] Zacznij nową grę");
-            if (hero != null && hero.name != "Not Specified")
-            {
-                Console.WriteLine("[2] Wczytaj grę");
-            }
             Console.WriteLine("[X] Zamknij program");
             Console.Write("Wybierz opcję: ");
 
@@ -489,17 +469,6 @@ class Diablo
             {
                 case "1":
                     StartNewGame();  // Tworzenie nowej gry
-                    break;
-                case "2":
-                    if (hero != null)
-                    {
-                        InitializeGame(hero); // Wczytanie istniejącej gry
-                    }
-                    else
-                    {
-                        Console.WriteLine("Nie masz jeszcze zapisanej gry.");
-                        Console.ReadKey();
-                    }
                     break;
                 case "X":
                     exitGame = true;
@@ -513,23 +482,6 @@ class Diablo
         }
     }
     
-    
-    
-    static void DisplayMissionJournal(Hero hero)
-    {
-        Console.Clear();
-        Console.WriteLine("=== Dziennik Misji ===");
-
-        if (hero.MissionJournal == null || hero.MissionJournal.Count == 0)
-        {
-            Console.WriteLine("Brak aktywnych misji.");
-        }
-        
-
-        Console.WriteLine("=======================");
-        Console.WriteLine("Naciśnij dowolny klawisz, aby wrócić.");
-        Console.ReadKey();
-    }
     
     static void DisplayHeroProfile(Hero hero)
     {
@@ -564,7 +516,8 @@ class Diablo
         // Jeśli imię bohatera jest poprawne i klasa została wybrana, tworzymy bohatera
         if (!string.IsNullOrEmpty(heroName) && chosenClass != EHeroClass.None)
         {
-            hero = new Hero(heroName, chosenClass); // Tworzymy bohatera
+            hero.name = heroName;
+            hero.klass = chosenClass;
             hero.Gold = 100; // Dodanie początkowego złota
             hero.Experience = 2000; // Początkowe doświadczenie
 
@@ -610,9 +563,6 @@ class Diablo
                     break;
                 case "S":
                     DisplayHeroProfile(hero); // Wyświetlenie statystyk bohatera
-                    break;
-                case "M":
-                    DisplayMissionJournal(hero); // Wyświetlenie dziennika misji
                     break;
                 case "X":
                     continueTravel = false;
@@ -711,9 +661,7 @@ class Diablo
             DialogParser parser = new DialogParser(hero, npc, gold, experience);
             string parsedDialog = parser.ParseDialog(node.NpcPart);
             Console.WriteLine(parsedDialog);
-
-            // Execute NodeAction if present
-            node.NodeAction?.Invoke();
+            
 
             // Sprawdzanie, czy dialog się kończy
             if (node.NodeAction != null || node.HeroResponses.Count == 0)
@@ -798,6 +746,7 @@ class Diablo
                 Console.WriteLine("Nieprawidłowy wybór klasy bohatera. Spróbuj ponownie.");
             }
         }
+        
 
         return chosenClass;
     }
