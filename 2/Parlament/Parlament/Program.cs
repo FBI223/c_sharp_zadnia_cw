@@ -1,14 +1,5 @@
-﻿//Marcin Sztukowski
-
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-
-
-
 
 namespace cw01
 {
@@ -16,65 +7,46 @@ namespace cw01
     {
         static void Main(string[] args)
         {
-            
             Random random = new Random();
             int numberOfDeputies = random.Next(2, 101); // Zakres [2, 100]
             Console.WriteLine($"Liczba posłów: {numberOfDeputies}");
+
             List<Representative> representatives = new List<Representative>();
             Parliment parliment_logic = new Parliment();
-            
-            
+
+            // Dodawanie posłów i subskrybowanie zdarzeń
             for (int i = 0; i < numberOfDeputies; i++)
             {
-                representatives.Add(new Representative($"Representative_{i}"));
-            }
-            for (int i = 0; i < numberOfDeputies; i++)
-            {
-                parliment_logic.VotingStarted += representatives[i].OnVotingStarted;
-                parliment_logic.VotingEnded += representatives[i].OnVotingEnded;
-                parliment_logic.VoteCommandGiven += representatives[i].OnGiveVote; // Subskrypcja na oddanie głosu
+                representatives.Add(new Representative($"Representative_{i}", parliment_logic));
             }
 
-            
-            
-            
             // Rozpoczęcie głosowania
             parliment_logic.StartVoting();
-            
+
+            // Wywołanie komendy do oddania głosu (wszyscy posłowie oddadzą głos)
             parliment_logic.CommandToGiveVote();
 
             // Zakończenie głosowania
             parliment_logic.StopVoting();
-            
-            
+
             // Wyświetlenie wyników głosowania
             parliment_logic.DisplayVotingResults();
-            
             Console.WriteLine("");
             Console.WriteLine("Session Ended!");
-            
-            //Console.ReadKey();
         }
-    
     }
+
     public class Parliment
     {
-        
         // Liczniki głosów
         private int yesVotes = 0;
         private int noVotes = 0;
         private int refrainVotes = 0;
-        
-    
-        public event EventHandler<VotingEventArgs> VoteSubmitted ;
+
         public event EventHandler VotingStarted;
         public event EventHandler VotingEnded;
-        
-        // Nowe zdarzenie, które wydaje komendę do oddania głosów
-        public event EventHandler VoteCommandGiven;
-        
-        
-        
+        public event EventHandler VoteCommandGiven; // Event do oddania głosu przez wszystkich
+
         public void DisplayVotingResults()
         {
             Console.WriteLine("");
@@ -84,7 +56,7 @@ namespace cw01
             Console.WriteLine($"Wstrzymujących się: {refrainVotes}");
             Console.WriteLine("");
         }
-        
+
         public void StartVoting()
         {
             Console.WriteLine("");
@@ -92,8 +64,7 @@ namespace cw01
             Console.WriteLine("");
             this.OnVotingStarted();
         }
-        
-        
+
         public void StopVoting()
         {
             Console.WriteLine("");
@@ -101,123 +72,106 @@ namespace cw01
             Console.WriteLine("");
             this.OnVotingEnded();
         }
-        
-        
-        
+
         public void CommandToGiveVote()
         {
             Console.WriteLine("");
             Console.WriteLine("Giving vote command!");
             Console.WriteLine("");
-            this.OnGiveVote(); // Wywołanie zdarzenia "oddaj głos"
+            this.OnGiveVote();
         }
-        
-        
+
+        protected virtual void OnVotingStarted()
+        {
+            this.VotingStarted?.Invoke(this, EventArgs.Empty);
+        }
+
+        protected virtual void OnGiveVote()
+        {
+            // Wywołanie zdarzenia, które powoduje oddanie głosu przez wszystkich
+            this.VoteCommandGiven?.Invoke(this, EventArgs.Empty);
+        }
+
         public void GiveVote(VotingEventArgs args)
         {
-
             switch (args.Vote)
             {
-                case VoteOption.no :
+                case VoteOption.no:
                     this.noVotes++;
                     break;
-                case VoteOption.yes :
+                case VoteOption.yes:
                     this.yesVotes++;
                     break;
-                case VoteOption.refrain :
+                case VoteOption.refrain:
                     this.refrainVotes++;
                     break;
             }
-            
-            VoteSubmitted?.Invoke(this, args); // Zgłaszanie zdarzenia oddania głosu
         }
 
-        
-        
-        
-        protected virtual void OnVotingStarted() //Metoda protected virtual
+        protected virtual void OnVotingEnded()
         {
-            this.VotingStarted?.Invoke(this , EventArgs.Empty);
+            this.VotingEnded?.Invoke(this, EventArgs.Empty);
         }
-        
-        protected virtual void OnGiveVote()
-        {
-            this.VoteCommandGiven?.Invoke(this, EventArgs.Empty); // Wywołanie zdarzenia "oddaj głos"
-        }
-        
-        
-        protected virtual void OnVotingEnded() //Metoda protected virtual
-        {
-            this.VotingEnded?.Invoke(this,EventArgs.Empty );
-        }
-        
-        // Zgłaszanie zdarzenia oddania głosu
-
-
-        
-        
     }
-
 
     public class Representative
     {
         private string name;
-        private VoteOption voteOption;
-        
-        public Representative(string name)
+        private static Random rand = new Random(); // Jednorazowa inicjalizacja Random
+        private Parliment parliment;
+
+        public Representative(string name, Parliment parliment)
         {
             this.name = name;
+            this.parliment = parliment;
+
+            // Subskrypcja na eventy głosowania
+            parliment.VotingStarted += OnVotingStarted;
+            parliment.VoteCommandGiven += OnGiveVote; // Subskrypcja na zdarzenie do oddania głosu
+            parliment.VotingEnded += OnVotingEnded;
         }
-        
-        
+
         // Subskrypcja na zdarzenie rozpoczęcia głosowania
         public void OnVotingStarted(object sender, EventArgs e)
         {
             Console.WriteLine($"I {this.name} am ready to vote!");
         }
+
         // Subskrypcja na zdarzenie zakończenia głosowania
         public void OnVotingEnded(object sender, EventArgs e)
         {
             Console.WriteLine($"I {this.name} am leaving the parliment after voting!");
         }
-        
 
-        
-        // Metoda oddania głosu przez posła
-        // Posłowie oddają głos w odpowiedzi na VotingStarted
+        // Metoda oddania głosu przez posła w odpowiedzi na zdarzenie `VoteCommandGiven`
         public void OnGiveVote(object sender, EventArgs e)
         {
-            Parliment parliment = sender as Parliment;
-            VoteOption vote = GetVote();
+            VoteOption vote = GetVote(); // Losowanie głosu
             Console.WriteLine($"{name} zagłosował: {vote}");
+
+            Parliment parliment = sender as Parliment;
             parliment.GiveVote(new VotingEventArgs { RepresentativeName = name, Vote = vote });
         }
-        
+
         // Generowanie losowego głosu
         private VoteOption GetVote()
         {
-            Random rand = new Random();
             VoteOption[] possibleVotes = { VoteOption.yes, VoteOption.no, VoteOption.refrain };
-            return possibleVotes[rand.Next(0, possibleVotes.Length)];
+            return possibleVotes[rand.Next(possibleVotes.Length)];
         }
-        
     }
-    
+
     // Definicja enum dla opcji głosowania
     public enum VoteOption
     {
         yes,
         no,
-        refrain // Zamiast "Wstrzymuję się" dla zgodności z konwencją C#
+        refrain
     }
-    
+
     public class VotingEventArgs : EventArgs
     {
         public string RepresentativeName { get; set; }
         public VoteOption Vote { get; set; }
     }
-    
-    
-    
 }
-
