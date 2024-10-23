@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Parlament")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+59282694fef9c2005911d171659deb7f2ebf32f9")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b6bb82289b71d9580036821fb9bb1ff0bc825083")]
 [assembly: System.Reflection.AssemblyProductAttribute("Parlament")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Parlament")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

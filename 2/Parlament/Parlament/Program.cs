@@ -28,7 +28,6 @@ namespace ParliamentSimulator
 
         public void StartVoting(string topic)
         {
-            Console.WriteLine($"Voting on the topic '{topic}' has started.");
             OnVotingStarted?.Invoke(topic);
 
             votesFor = 0;
@@ -42,7 +41,6 @@ namespace ParliamentSimulator
 
         public void EndVoting(string topic)
         {
-            Console.WriteLine($"Voting on the topic '{topic}' has ended.");
             OnVotingEnded?.Invoke(topic);
             Console.WriteLine($"Votes for: {votesFor}, Votes against: {votesAgainst}");
         }
