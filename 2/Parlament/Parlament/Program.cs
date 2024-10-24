@@ -3,14 +3,24 @@ using System.Collections.Generic;
 
 namespace ParliamentSimulator
 {
-    // Define delegate for the voting events
-    public delegate void VotingEventHandler(string topic);
+    // Define custom EventArgs for voting event
+    public class VoteEventArgs : EventArgs
+    {
+        public int ParliamentarianId { get; }
+        public bool Vote { get; }
+
+        public VoteEventArgs(int id, bool vote)
+        {
+            ParliamentarianId = id;
+            Vote = vote;
+        }
+    }
 
     public class Parliament
     {
-        public event VotingEventHandler OnVotingStarted;
-        public event VotingEventHandler OnVotingEnded;
-        
+        public event EventHandler<string> OnVotingStarted;
+        public event EventHandler<string> OnVotingEnded;
+
         private readonly List<Parliamentarian> parliamentarians;
         private int votesFor;
         private int votesAgainst;
@@ -21,14 +31,14 @@ namespace ParliamentSimulator
             for (int i = 0; i < numberOfParliamentarians; i++)
             {
                 Parliamentarian parliamentarian = new Parliamentarian(i);
-                parliamentarian.OnVoteCast += HandleVote;
+                parliamentarian.VoteCast += HandleVote;
                 parliamentarians.Add(parliamentarian);
             }
         }
 
         public void StartVoting(string topic)
         {
-            OnVotingStarted?.Invoke(topic);
+            OnVotingStarted?.Invoke(this, topic);
 
             votesFor = 0;
             votesAgainst = 0;
@@ -41,14 +51,14 @@ namespace ParliamentSimulator
 
         public void EndVoting(string topic)
         {
-            OnVotingEnded?.Invoke(topic);
+            OnVotingEnded?.Invoke(this, topic);
             Console.WriteLine($"Votes for: {votesFor}, Votes against: {votesAgainst}");
         }
 
-        private void HandleVote(int parliamentarianId, bool vote)
+        private void HandleVote(object sender, VoteEventArgs e)
         {
-            Console.WriteLine($"Parliamentarian {parliamentarianId} voted {(vote ? "for" : "against")}.");
-            if (vote)
+            Console.WriteLine($"Parliamentarian {e.ParliamentarianId} voted {(e.Vote ? "for" : "against")}.");
+            if (e.Vote)
                 votesFor++;
             else
                 votesAgainst++;
@@ -60,9 +70,8 @@ namespace ParliamentSimulator
         public int Id { get; }
         private static Random random = new Random();
 
-        // Define delegate for casting vote
-        public delegate void VoteCastHandler(int id, bool vote);
-        public event VoteCastHandler OnVoteCast;
+        // Event using EventHandler with custom VoteEventArgs
+        public event EventHandler<VoteEventArgs> VoteCast;
 
         public Parliamentarian(int id)
         {
@@ -72,7 +81,7 @@ namespace ParliamentSimulator
         public void CastVote()
         {
             bool vote = random.Next(0, 2) == 1;
-            OnVoteCast?.Invoke(Id, vote);
+            VoteCast?.Invoke(this, new VoteEventArgs(Id, vote));
         }
     }
 
@@ -87,7 +96,7 @@ namespace ParliamentSimulator
             string topic = Console.ReadLine();
 
             Parliament parliament = new Parliament(numParliamentarians);
-            
+
             // Attach the event handlers
             parliament.OnVotingStarted += OnVotingStartedHandler;
             parliament.OnVotingEnded += OnVotingEndedHandler;
@@ -102,13 +111,13 @@ namespace ParliamentSimulator
         }
 
         // Event handler for when voting starts
-        static void OnVotingStartedHandler(string topic)
+        static void OnVotingStartedHandler(object sender, string topic)
         {
             Console.WriteLine($"Event: Voting on '{topic}' has started.");
         }
 
         // Event handler for when voting ends
-        static void OnVotingEndedHandler(string topic)
+        static void OnVotingEndedHandler(object sender, string topic)
         {
             Console.WriteLine($"Event: Voting on '{topic}' has ended.");
         }
