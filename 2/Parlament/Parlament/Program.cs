@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 namespace ParliamentSimulator
 {
-    // Define custom EventArgs for voting event
     public class VoteEventArgs : EventArgs
     {
         public int ParliamentarianId { get; }

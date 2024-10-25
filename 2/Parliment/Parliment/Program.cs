@@ -1,144 +1,140 @@
-﻿
+﻿using System;
+using System.Collections.Generic;
+
 namespace ParliamentSimulator
 {
-    class Program
+    public class VoteEventArgs : EventArgs
     {
-        static void Main(string[] args)
+        public int ParliamentarianId { get; }
+        public bool Vote { get; }
+
+        public VoteEventArgs(int id, bool vote)
         {
-            Console.Write("Podaj liczbę parlamentarzystów: ");
-            int numberOfMembers = int.Parse(Console.ReadLine());
-            Console.Write("Podaj temat głosowania: ");
-            string votingTopic = Console.ReadLine();
-            
-            
-            Parliament parliament = new Parliament(numberOfMembers, votingTopic);
-            parliament.StartVoting();
-            parliament.EndVoting(); 
-            parliament.ShowResults();
-            
+            ParliamentarianId = id;
+            Vote = vote;
         }
     }
 
     public class Parliament
     {
-        public event EventHandler StartVoteEvent;
-        public event EventHandler EndVoteEvent;
-        private List<Parliamentarian> members;
-        private string topic;
-        private bool votingStarted;
-        private bool votingEnded;
+        public event EventHandler<string> OnVotingStarted;
+        public event EventHandler<string> OnVotingEnded;
+        
+        // Nowe zdarzenie, które symuluje przyciskanie przycisków
+        public event EventHandler OnPressingButtons;
+
+        private readonly List<Parliamentarian> parliamentarians;
         private int votesFor;
         private int votesAgainst;
 
-        public Parliament(int numberOfMembers, string votingTopic)
+        public Parliament(int numberOfParliamentarians)
         {
-            members = new List<Parliamentarian>();
-            topic = votingTopic;
-            votingStarted = false;
-            votingEnded = false;
+            parliamentarians = new List<Parliamentarian>();
+            for (int i = 0; i < numberOfParliamentarians; i++)
+            {
+                Parliamentarian parliamentarian = new Parliamentarian(i);
+                
+                // Każdy poseł subskrybuje zdarzenie "Pressing Buttons"
+                this.OnPressingButtons += parliamentarian.OnPressingButtonsHandler;
+
+                // Parlament subskrybuje zdarzenie głosowania od każdego posła
+                parliamentarian.VoteCast += HandleVote;
+                
+                parliamentarians.Add(parliamentarian);
+            }
+        }
+
+        public void StartVoting(string topic)
+        {
+            Console.WriteLine($"Voting on '{topic}' has started.");
+            OnVotingStarted?.Invoke(this, topic);
+            
             votesFor = 0;
             votesAgainst = 0;
 
-            for (int i = 0; i < numberOfMembers; i++)
-            {
-                Parliamentarian member = new Parliamentarian(i + 1);
-                member.VoteEvent += OnMemberVoted;
-                members.Add(member);
-            }
+            // Wywołanie zdarzenia "Pressing Buttons" – posłowie oddadzą głos
+            OnPressingButtons?.Invoke(this, EventArgs.Empty);
         }
 
-        public void StartVoting()
+        public void EndVoting(string topic)
         {
-            if (!votingStarted && !votingEnded)
-            {
-                Console.WriteLine($"Rozpoczęto głosowanie nad tematem: {topic}");
-                votingStarted = true;
-                OnStartVote();
-                foreach (var member in members)
-                {
-                    member.Vote();
-                }
-            }
-            else
-            {
-                Console.WriteLine("Głosowanie już się rozpoczęło lub zakończyło.");
-            }
+            OnVotingEnded?.Invoke(this, topic);
+            Console.WriteLine($"Voting on '{topic}' has ended.");
+            Console.WriteLine($"Votes for: {votesFor}, Votes against: {votesAgainst}");
         }
 
-        public void EndVoting()
+        private void HandleVote(object sender, VoteEventArgs e)
         {
-            if (votingStarted && !votingEnded)
-            {
-                Console.WriteLine("Zakończono głosowanie.");
-                votingEnded = true;
-                OnEndVote();
-            }
-            else
-            {
-                Console.WriteLine("Głosowanie nie zostało rozpoczęte lub już zakończone.");
-            }
-        }
-
-        public void ShowResults()
-        {
-            Console.WriteLine($"Głosowanie nad {topic}. Głosów za: {votesFor}, Głosów przeciw: {votesAgainst}");
-        }
-
-        protected virtual void OnStartVote()
-        {
-            StartVoteEvent?.Invoke(this, EventArgs.Empty);
-        }
-
-        protected virtual void OnEndVote()
-        {
-            EndVoteEvent?.Invoke(this, EventArgs.Empty);
-        }
-
-        private void OnMemberVoted(object sender, VoteEventArgs e)
-        {
-            if (e.Vote == Vote.For)
-            {
+            Console.WriteLine($"Parliamentarian {e.ParliamentarianId} voted {(e.Vote ? "for" : "against")}.");
+            if (e.Vote)
                 votesFor++;
-            }
             else
-            {
                 votesAgainst++;
-            }
         }
     }
 
     public class Parliamentarian
     {
-        public event EventHandler<VoteEventArgs> VoteEvent;
-        private int id;
+        public int Id { get; }
+        private static Random random = new Random();
+
+        // Zdarzenie głosowania z użyciem `VoteEventArgs`
+        public event EventHandler<VoteEventArgs> VoteCast;
 
         public Parliamentarian(int id)
         {
-            this.id = id;
+            Id = id;
         }
 
-        public void Vote()
+        // Obsługa zdarzenia OnPressingButtons, wywołująca głosowanie
+        public void OnPressingButtonsHandler(object sender, EventArgs e)
         {
-            Random rand = new Random();
-            Vote vote = (Vote)rand.Next(2); // 0 - Against, 1 - For
-            Console.WriteLine($"GŁOS {id}: {(vote != ParliamentSimulator.Vote.For ? "ZA" : "PRZECIW")}");
-            OnVote(vote);
+            CastVote();
         }
 
-        protected virtual void OnVote(Vote vote)
+        public void CastVote()
         {
-            VoteEvent?.Invoke(this, new VoteEventArgs { Vote = vote });
+            bool vote = random.Next(0, 2) == 1;
+            // Wywołanie zdarzenia VoteCast z wynikiem głosowania
+            VoteCast?.Invoke(this, new VoteEventArgs(Id, vote));
         }
     }
 
-    public enum Vote
+    class Program
     {
-        Against,
-        For
-    }
+        static void Main(string[] args)
+        {
+            Console.Write("Enter the number of parliamentarians: ");
+            int numParliamentarians = int.Parse(Console.ReadLine());
 
-    public class VoteEventArgs : EventArgs
-    {
-        public Vote Vote { get; set; }
+            Console.Write("Enter the topic of voting: ");
+            string topic = Console.ReadLine();
+
+            Parliament parliament = new Parliament(numParliamentarians);
+
+            // Subskrybowanie zdarzeń dla początku i końca głosowania
+            parliament.OnVotingStarted += OnVotingStartedHandler;
+            parliament.OnVotingEnded += OnVotingEndedHandler;
+
+            // Rozpoczęcie głosowania
+            parliament.StartVoting(topic);
+
+            // Zakończenie głosowania
+            parliament.EndVoting(topic);
+
+            Console.ReadKey();
+        }
+
+        // Obsługa zdarzenia rozpoczęcia głosowania
+        static void OnVotingStartedHandler(object sender, string topic)
+        {
+            Console.WriteLine($"Event: Voting on '{topic}' has started. Command: 'Pressing Buttons' sent.");
+        }
+
+        // Obsługa zdarzenia zakończenia głosowania
+        static void OnVotingEndedHandler(object sender, string topic)
+        {
+            Console.WriteLine($"Event: Voting on '{topic}' has ended.");
+        }
     }
 }
