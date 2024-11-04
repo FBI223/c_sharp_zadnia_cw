@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace ParliamentSimulator
+namespace Parliment
 {
     public class VoteEventArgs : EventArgs
     {
@@ -77,8 +77,7 @@ namespace ParliamentSimulator
     {
         public int Id { get; }
         private static Random random = new Random();
-
-        // Zdarzenie głosowania z użyciem `VoteEventArgs`
+        
         public event EventHandler<VoteEventArgs> VoteCast;
 
         public Parliamentarian(int id)
@@ -112,10 +111,6 @@ namespace ParliamentSimulator
 
             Parliament parliament = new Parliament(numParliamentarians);
 
-            // Subskrybowanie zdarzeń dla początku i końca głosowania
-            parliament.OnVotingStarted += OnVotingStartedHandler;
-            parliament.OnVotingEnded += OnVotingEndedHandler;
-
             // Rozpoczęcie głosowania
             parliament.StartVoting(topic);
 
@@ -125,16 +120,6 @@ namespace ParliamentSimulator
             Console.ReadKey();
         }
 
-        // Obsługa zdarzenia rozpoczęcia głosowania
-        static void OnVotingStartedHandler(object sender, string topic)
-        {
-            Console.WriteLine($"Event: Voting on '{topic}' has started. Command: 'Pressing Buttons' sent.");
-        }
-
-        // Obsługa zdarzenia zakończenia głosowania
-        static void OnVotingEndedHandler(object sender, string topic)
-        {
-            Console.WriteLine($"Event: Voting on '{topic}' has ended.");
-        }
+        
     }
 }

@@ -1,0 +1,15 @@
+C:\Users\msztu\Desktop\UJ_ZIMOWY_25\PEGAZ\PCSHARP\c_sharp_zadnia_cw\2\Parlament\Parlament\bin\Debug\net8.0\Parlament.exe
+C:\Users\msztu\Desktop\UJ_ZIMOWY_25\PEGAZ\PCSHARP\c_sharp_zadnia_cw\2\Parlament\Parlament\bin\Debug\net8.0\Parlament.deps.json
+C:\Users\msztu\Desktop\UJ_ZIMOWY_25\PEGAZ\PCSHARP\c_sharp_zadnia_cw\2\Parlament\Parlament\bin\Debug\net8.0\Parlament.runtimeconfig.json
+C:\Users\msztu\Desktop\UJ_ZIMOWY_25\PEGAZ\PCSHARP\c_sharp_zadnia_cw\2\Parlament\Parlament\bin\Debug\net8.0\Parlament.dll
+C:\Users\msztu\Desktop\UJ_ZIMOWY_25\PEGAZ\PCSHARP\c_sharp_zadnia_cw\2\Parlament\Parlament\bin\Debug\net8.0\Parlament.pdb
+C:\Users\msztu\Desktop\UJ_ZIMOWY_25\PEGAZ\PCSHARP\c_sharp_zadnia_cw\2\Parlament\Parlament\obj\Debug\net8.0\Parlament.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\msztu\Desktop\UJ_ZIMOWY_25\PEGAZ\PCSHARP\c_sharp_zadnia_cw\2\Parlament\Parlament\obj\Debug\net8.0\Parlament.AssemblyInfoInputs.cache
+C:\Users\msztu\Desktop\UJ_ZIMOWY_25\PEGAZ\PCSHARP\c_sharp_zadnia_cw\2\Parlament\Parlament\obj\Debug\net8.0\Parlament.AssemblyInfo.cs
+C:\Users\msztu\Desktop\UJ_ZIMOWY_25\PEGAZ\PCSHARP\c_sharp_zadnia_cw\2\Parlament\Parlament\obj\Debug\net8.0\Parlament.csproj.CoreCompileInputs.cache
+C:\Users\msztu\Desktop\UJ_ZIMOWY_25\PEGAZ\PCSHARP\c_sharp_zadnia_cw\2\Parlament\Parlament\obj\Debug\net8.0\Parlament.sourcelink.json
+C:\Users\msztu\Desktop\UJ_ZIMOWY_25\PEGAZ\PCSHARP\c_sharp_zadnia_cw\2\Parlament\Parlament\obj\Debug\net8.0\Parlament.dll
+C:\Users\msztu\Desktop\UJ_ZIMOWY_25\PEGAZ\PCSHARP\c_sharp_zadnia_cw\2\Parlament\Parlament\obj\Debug\net8.0\refint\Parlament.dll
+C:\Users\msztu\Desktop\UJ_ZIMOWY_25\PEGAZ\PCSHARP\c_sharp_zadnia_cw\2\Parlament\Parlament\obj\Debug\net8.0\Parlament.pdb
+C:\Users\msztu\Desktop\UJ_ZIMOWY_25\PEGAZ\PCSHARP\c_sharp_zadnia_cw\2\Parlament\Parlament\obj\Debug\net8.0\Parlament.genruntimeconfig.cache
+C:\Users\msztu\Desktop\UJ_ZIMOWY_25\PEGAZ\PCSHARP\c_sharp_zadnia_cw\2\Parlament\Parlament\obj\Debug\net8.0\ref\Parlament.dll
