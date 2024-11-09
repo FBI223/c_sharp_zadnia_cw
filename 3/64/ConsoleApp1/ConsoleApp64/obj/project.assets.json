@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\msztu\\Desktop\\UJ_ZIMOWY_25\\PEGAZ\\PCSHARP\\c_sharp_zadnia_cw\\3\\64\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj",
-      "projectName": "ConsoleApp1",
-      "projectPath": "C:\\Users\\msztu\\Desktop\\UJ_ZIMOWY_25\\PEGAZ\\PCSHARP\\c_sharp_zadnia_cw\\3\\64\\ConsoleApp1\\ConsoleApp1\\ConsoleApp1.csproj",
+      "projectUniqueName": "C:\\Users\\msztu\\Desktop\\UJ_ZIMOWY_25\\PEGAZ\\PCSHARP\\c_sharp_zadnia_cw\\3\\64\\ConsoleApp1\\ConsoleApp64\\ConsoleApp64.csproj",
+      "projectName": "ConsoleApp64",
+      "projectPath": "C:\\Users\\msztu\\Desktop\\UJ_ZIMOWY_25\\PEGAZ\\PCSHARP\\c_sharp_zadnia_cw\\3\\64\\ConsoleApp1\\ConsoleApp64\\ConsoleApp64.csproj",
       "packagesPath": "C:\\Users\\msztu\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\msztu\\Desktop\\UJ_ZIMOWY_25\\PEGAZ\\PCSHARP\\c_sharp_zadnia_cw\\3\\64\\ConsoleApp1\\ConsoleApp1\\obj\\",
+      "outputPath": "C:\\Users\\msztu\\Desktop\\UJ_ZIMOWY_25\\PEGAZ\\PCSHARP\\c_sharp_zadnia_cw\\3\\64\\ConsoleApp1\\ConsoleApp64\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
