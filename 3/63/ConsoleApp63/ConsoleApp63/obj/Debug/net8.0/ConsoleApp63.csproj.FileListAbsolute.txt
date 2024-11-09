@@ -1,0 +1,15 @@
+C:\Users\msztu\Desktop\UJ_ZIMOWY_25\PEGAZ\PCSHARP\c_sharp_zadnia_cw\3\63\ConsoleApp63\ConsoleApp63\bin\Debug\net8.0\ConsoleApp63.exe
+C:\Users\msztu\Desktop\UJ_ZIMOWY_25\PEGAZ\PCSHARP\c_sharp_zadnia_cw\3\63\ConsoleApp63\ConsoleApp63\bin\Debug\net8.0\ConsoleApp63.deps.json
+C:\Users\msztu\Desktop\UJ_ZIMOWY_25\PEGAZ\PCSHARP\c_sharp_zadnia_cw\3\63\ConsoleApp63\ConsoleApp63\bin\Debug\net8.0\ConsoleApp63.runtimeconfig.json
+C:\Users\msztu\Desktop\UJ_ZIMOWY_25\PEGAZ\PCSHARP\c_sharp_zadnia_cw\3\63\ConsoleApp63\ConsoleApp63\bin\Debug\net8.0\ConsoleApp63.dll
+C:\Users\msztu\Desktop\UJ_ZIMOWY_25\PEGAZ\PCSHARP\c_sharp_zadnia_cw\3\63\ConsoleApp63\ConsoleApp63\bin\Debug\net8.0\ConsoleApp63.pdb
+C:\Users\msztu\Desktop\UJ_ZIMOWY_25\PEGAZ\PCSHARP\c_sharp_zadnia_cw\3\63\ConsoleApp63\ConsoleApp63\obj\Debug\net8.0\ConsoleApp63.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\msztu\Desktop\UJ_ZIMOWY_25\PEGAZ\PCSHARP\c_sharp_zadnia_cw\3\63\ConsoleApp63\ConsoleApp63\obj\Debug\net8.0\ConsoleApp63.AssemblyInfoInputs.cache
+C:\Users\msztu\Desktop\UJ_ZIMOWY_25\PEGAZ\PCSHARP\c_sharp_zadnia_cw\3\63\ConsoleApp63\ConsoleApp63\obj\Debug\net8.0\ConsoleApp63.AssemblyInfo.cs
+C:\Users\msztu\Desktop\UJ_ZIMOWY_25\PEGAZ\PCSHARP\c_sharp_zadnia_cw\3\63\ConsoleApp63\ConsoleApp63\obj\Debug\net8.0\ConsoleApp63.csproj.CoreCompileInputs.cache
+C:\Users\msztu\Desktop\UJ_ZIMOWY_25\PEGAZ\PCSHARP\c_sharp_zadnia_cw\3\63\ConsoleApp63\ConsoleApp63\obj\Debug\net8.0\ConsoleApp63.sourcelink.json
+C:\Users\msztu\Desktop\UJ_ZIMOWY_25\PEGAZ\PCSHARP\c_sharp_zadnia_cw\3\63\ConsoleApp63\ConsoleApp63\obj\Debug\net8.0\ConsoleApp63.dll
+C:\Users\msztu\Desktop\UJ_ZIMOWY_25\PEGAZ\PCSHARP\c_sharp_zadnia_cw\3\63\ConsoleApp63\ConsoleApp63\obj\Debug\net8.0\refint\ConsoleApp63.dll
+C:\Users\msztu\Desktop\UJ_ZIMOWY_25\PEGAZ\PCSHARP\c_sharp_zadnia_cw\3\63\ConsoleApp63\ConsoleApp63\obj\Debug\net8.0\ConsoleApp63.pdb
+C:\Users\msztu\Desktop\UJ_ZIMOWY_25\PEGAZ\PCSHARP\c_sharp_zadnia_cw\3\63\ConsoleApp63\ConsoleApp63\obj\Debug\net8.0\ConsoleApp63.genruntimeconfig.cache
+C:\Users\msztu\Desktop\UJ_ZIMOWY_25\PEGAZ\PCSHARP\c_sharp_zadnia_cw\3\63\ConsoleApp63\ConsoleApp63\obj\Debug\net8.0\ref\ConsoleApp63.dll
