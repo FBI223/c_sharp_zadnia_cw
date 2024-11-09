@@ -42,6 +42,10 @@ class Program
         
         */
         
+        
+        
+        
+        /*
         // Tworzenie liczby zespolonej dla testu
         ComplexNumber<int> complex1 = new ComplexNumber<int>(3, 4);
         ComplexNumber<int> complex2 = new ComplexNumber<int>(1, 2);
@@ -77,12 +81,13 @@ class Program
         bool isDiagonal = diagMatrix.isDiagonal();
         Console.WriteLine($"Czy macierz jest diagonalna? {isDiagonal}");
         
+        */
         
     }
 
 }
 
-
+/*
 
 class QuadraticMatrix<T> : Matrix<T> where T : struct, IComparable, IFormattable
 {
@@ -352,6 +357,7 @@ class ComplexNumber<U> : IComparable, IFormattable where U : struct,  IComparabl
 }
 
 
+*/
 
 
 
@@ -383,8 +389,6 @@ class ComplexNumber<U> : IComparable, IFormattable where U : struct,  IComparabl
 
 
 
-
-/*
 
 
 
@@ -422,6 +426,8 @@ class QuadraticMatrix<T> : Matrix<T> where T :  IComparable, IFormattable
 class Matrix<T> where T :  IComparable, IFormattable
 {
 
+    protected T def;
+    
     protected T[,] matrix;
     protected int rows { get; set; }
     protected int columns { get; set; }
@@ -430,19 +436,7 @@ class Matrix<T> where T :  IComparable, IFormattable
     {
         return matrix[row, column];
     }
-
-    protected static ComplexNumber<T> ConvertToComplex(T value)
-    {
-        if (value is ComplexNumber<T> complexValue)
-        {
-            return complexValue;
-        }
-        else
-        {
-            // Tworzymy Complex z wartością rzeczywistą i zerową częścią urojoną
-            return new ComplexNumber<T>(value);
-        }
-    }
+    
     
     public void SetElement(int row, int column, T value)
     {
@@ -452,7 +446,7 @@ class Matrix<T> where T :  IComparable, IFormattable
         }
         else
         {
-            matrix[row, column] = ;
+            matrix[row, column] = ConvertToComplex(value) ;
         }
  
     }
@@ -461,12 +455,15 @@ class Matrix<T> where T :  IComparable, IFormattable
 
     protected Matrix(int rows, int columns)
     {
-        if (!IsNumericType(typeof(T)) && typeof(T) != typeof(ComplexNumber<T>))
+        if (!IsNumericType(typeof(T) ) || typeof(T).IsGenericType && typeof(T).GetGenericTypeDefinition() == typeof(ComplexNumber<>) )
         {
             throw new InvalidOperationException("Matrix can only be used with numeric types or ComplexNumber.");
         }
         else
         {
+            
+            
+            
             this.matrix = new T[rows, columns];
             this.rows = rows;
             this.columns = columns;
@@ -631,5 +628,5 @@ class ComplexNumber<T> : IComparable, IFormattable where T :   IComparable, IFor
     }
 }
 
-*/
+
 

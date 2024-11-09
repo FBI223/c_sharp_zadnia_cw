@@ -1,11 +1,8 @@
 ﻿
-// niestety boxing bedzie
-namespace ConsoleApp4;
-
 class ComplexNumber<T> where T :  IComparable, IFormattable
 {
-    public T Real { get; set; }
-    public T Imaginary { get; set; }
+    public T Real { get; private set; }
+    public T Imaginary { get; private set; }
     
     public ComplexNumber(T real, T imaginary)
     {
@@ -31,6 +28,17 @@ class ComplexNumber<T> where T :  IComparable, IFormattable
                type == typeof(byte) || type == typeof(sbyte);
     }
     
+    
+    
+    public T GetRealPart()
+    {
+        return Real;
+    }
+
+    public T GetImaginaryPart()
+    {
+        return Imaginary;
+    }
 
     public override string ToString()
     {
