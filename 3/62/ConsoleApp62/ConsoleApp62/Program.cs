@@ -168,16 +168,8 @@
      
      public abstract Matrix<T> Multiply(Matrix<T> other);
      public abstract Matrix<T> Add(Matrix<T> other);
-
-
-
+     
  }
- 
-
- 
- 
- 
- 
  
  
  
@@ -257,7 +249,7 @@
          {
              for (int j = 0; j < Columns; j++)
              {
-                 elements[i, j] = new T(); // Inicjalizacja jako Complex(0, 0)
+                 elements[i, j] = new T(); 
              }
          }
      }
@@ -327,7 +319,6 @@
          Imaginary = imaginary;
      }
 
-     // Konstruktor domyślny (ustawia 0 jako wartość domyślną)
      public Complex() : this(default(U), default(U)) { }
 
      public static Complex<U> operator +(Complex<U> a, Complex<U> b)
@@ -338,13 +329,11 @@
     
      public static Complex<U> operator *(Complex<U> a, Complex<U> b)
      {
-         // Obliczamy część rzeczywistą i urojoną zgodnie z zasadami mnożenia liczb zespolonych
          dynamic realPart = (dynamic)a.Real * (dynamic)b.Real - (dynamic)a.Imaginary * (dynamic)b.Imaginary;
          dynamic imaginaryPart = (dynamic)a.Real * (dynamic)b.Imaginary + (dynamic)a.Imaginary * (dynamic)b.Real;
          return new Complex<U>(realPart, imaginaryPart);
      }
      
-         // Metoda klonująca
     public Complex<U> Clone()
     {
         return new Complex<U>(Real, Imaginary);

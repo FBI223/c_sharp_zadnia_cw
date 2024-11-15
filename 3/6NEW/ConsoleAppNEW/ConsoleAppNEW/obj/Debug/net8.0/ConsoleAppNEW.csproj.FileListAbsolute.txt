@@ -1,0 +1,15 @@
+C:\Users\msztu\Desktop\UJ_ZIMOWY_25\PEGAZ\PCSHARP\c_sharp_zadnia_cw\3\6NEW\ConsoleAppNEW\ConsoleAppNEW\bin\Debug\net8.0\ConsoleAppNEW.exe
+C:\Users\msztu\Desktop\UJ_ZIMOWY_25\PEGAZ\PCSHARP\c_sharp_zadnia_cw\3\6NEW\ConsoleAppNEW\ConsoleAppNEW\bin\Debug\net8.0\ConsoleAppNEW.deps.json
+C:\Users\msztu\Desktop\UJ_ZIMOWY_25\PEGAZ\PCSHARP\c_sharp_zadnia_cw\3\6NEW\ConsoleAppNEW\ConsoleAppNEW\bin\Debug\net8.0\ConsoleAppNEW.runtimeconfig.json
+C:\Users\msztu\Desktop\UJ_ZIMOWY_25\PEGAZ\PCSHARP\c_sharp_zadnia_cw\3\6NEW\ConsoleAppNEW\ConsoleAppNEW\bin\Debug\net8.0\ConsoleAppNEW.dll
+C:\Users\msztu\Desktop\UJ_ZIMOWY_25\PEGAZ\PCSHARP\c_sharp_zadnia_cw\3\6NEW\ConsoleAppNEW\ConsoleAppNEW\bin\Debug\net8.0\ConsoleAppNEW.pdb
+C:\Users\msztu\Desktop\UJ_ZIMOWY_25\PEGAZ\PCSHARP\c_sharp_zadnia_cw\3\6NEW\ConsoleAppNEW\ConsoleAppNEW\obj\Debug\net8.0\ConsoleAppNEW.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\msztu\Desktop\UJ_ZIMOWY_25\PEGAZ\PCSHARP\c_sharp_zadnia_cw\3\6NEW\ConsoleAppNEW\ConsoleAppNEW\obj\Debug\net8.0\ConsoleAppNEW.AssemblyInfoInputs.cache
+C:\Users\msztu\Desktop\UJ_ZIMOWY_25\PEGAZ\PCSHARP\c_sharp_zadnia_cw\3\6NEW\ConsoleAppNEW\ConsoleAppNEW\obj\Debug\net8.0\ConsoleAppNEW.AssemblyInfo.cs
+C:\Users\msztu\Desktop\UJ_ZIMOWY_25\PEGAZ\PCSHARP\c_sharp_zadnia_cw\3\6NEW\ConsoleAppNEW\ConsoleAppNEW\obj\Debug\net8.0\ConsoleAppNEW.csproj.CoreCompileInputs.cache
+C:\Users\msztu\Desktop\UJ_ZIMOWY_25\PEGAZ\PCSHARP\c_sharp_zadnia_cw\3\6NEW\ConsoleAppNEW\ConsoleAppNEW\obj\Debug\net8.0\ConsoleAppNEW.sourcelink.json
+C:\Users\msztu\Desktop\UJ_ZIMOWY_25\PEGAZ\PCSHARP\c_sharp_zadnia_cw\3\6NEW\ConsoleAppNEW\ConsoleAppNEW\obj\Debug\net8.0\ConsoleAppNEW.dll
+C:\Users\msztu\Desktop\UJ_ZIMOWY_25\PEGAZ\PCSHARP\c_sharp_zadnia_cw\3\6NEW\ConsoleAppNEW\ConsoleAppNEW\obj\Debug\net8.0\refint\ConsoleAppNEW.dll
+C:\Users\msztu\Desktop\UJ_ZIMOWY_25\PEGAZ\PCSHARP\c_sharp_zadnia_cw\3\6NEW\ConsoleAppNEW\ConsoleAppNEW\obj\Debug\net8.0\ConsoleAppNEW.pdb
+C:\Users\msztu\Desktop\UJ_ZIMOWY_25\PEGAZ\PCSHARP\c_sharp_zadnia_cw\3\6NEW\ConsoleAppNEW\ConsoleAppNEW\obj\Debug\net8.0\ConsoleAppNEW.genruntimeconfig.cache
+C:\Users\msztu\Desktop\UJ_ZIMOWY_25\PEGAZ\PCSHARP\c_sharp_zadnia_cw\3\6NEW\ConsoleAppNEW\ConsoleAppNEW\obj\Debug\net8.0\ref\ConsoleAppNEW.dll

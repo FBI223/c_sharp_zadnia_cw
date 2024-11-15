@@ -1,33 +1,29 @@
 ﻿
-class ComplexNumber<T> where T :  IComparable, IFormattable
+using System.Numerics;
+
+struct ComplexNumber<T> where T :  IComparable, IFormattable , INumber<T>
 {
-    public T Real { get; private set; }
-    public T Imaginary { get; private set; }
+    public T Real { get; set; }
+    public T Imaginary { get; set; }
     
     public ComplexNumber(T real, T imaginary)
     {
-        if (!IsNumericType(typeof(T)))
-        {
-            throw new InvalidOperationException("ComplexNumber can only be used with numeric types.");
-        }
-        
         Real = real;
         Imaginary = imaginary;
     }
     
     
-    // Konstruktor dla wartości rzeczywistej (część urojona ustawiona na zero)
-    public ComplexNumber(T real) : this(real, default(T)) {}
-
-    private bool IsNumericType(Type type)
+    // Implementacja IComparable<Complex<U>>
+    public int CompareTo(ComplexNumber<T> other)
     {
-        return type == typeof(int) || type == typeof(float) || 
-               type == typeof(double) || type == typeof(decimal) ||
-               type == typeof(long) || type == typeof(short) ||
-               type == typeof(ulong) || type == typeof(ushort) ||
-               type == typeof(byte) || type == typeof(sbyte);
+        
+        // Porównanie według modułu liczby zespolonej
+        var thisMagnitude = Real * Real + Imaginary * Imaginary;
+        var otherMagnitude = other.Real * other.Real + other.Imaginary * other.Imaginary;
+        return thisMagnitude.CompareTo(otherMagnitude);
     }
-    
+
+
     
     
     public T GetRealPart()
