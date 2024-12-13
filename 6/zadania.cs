@@ -13,15 +13,14 @@ namespace zad1
             Console.WriteLine("Welcome to C# Reflection");
             Type customerType = typeof(Customer);
             
-            if (customerType != null)
-            {
-                DisplayFields(customerType);
-                DisplayProperties(customerType);
-                DisplayNestedTypes(customerType);
-                DisplayMethods(customerType);
-                DisplayConstructors(customerType);
-                DisplayMembers(customerType);
-            }
+
+            DisplayFields(customerType);
+            DisplayProperties(customerType);
+            DisplayNestedTypes(customerType);
+            DisplayMethods(customerType);
+            DisplayConstructors(customerType);
+            DisplayMembers(customerType);
+        
             
             Console.WriteLine("");
             Console.WriteLine("");
