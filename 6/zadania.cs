@@ -11,8 +11,8 @@ namespace zad1
             
             // 1 zadanie
             Console.WriteLine("Welcome to C# Reflection");
-            Type? customerType = Assembly.GetExecutingAssembly().GetType("zad1.Customer"); // Ładowanie typu z assembly
-
+            Type customerType = typeof(Customer);
+            
             if (customerType != null)
             {
                 DisplayFields(customerType);
