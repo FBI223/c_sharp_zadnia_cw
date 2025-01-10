@@ -1,0 +1,124 @@
+﻿<Window x:Class="Lecture10.WPF.Gielda"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Lecture10.WPF"
+        mc:Ignorable="d"
+        Title="Gielda" Height="666" Width="666">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        
+        
+
+        <Border x:Name="Border1Border" Grid.Row="0" Grid.Column="0" BorderBrush="Black" BorderThickness="3" Background="Gray">
+            <StackPanel x:Name="Stock1Panel" HorizontalAlignment="Center" VerticalAlignment="Center">
+                
+                <TextBlock Text="KGHM" Margin="5" FontSize="20" Foreground="White" TextAlignment="Center">
+                    <TextBlock.Effect>
+                        <DropShadowEffect Color="Black" BlurRadius="10" ShadowDepth="2" Opacity="1" />
+                    </TextBlock.Effect>
+                </TextBlock>
+                
+                <TextBlock x:Name="Stock1Value" Text="110 ZL"  Margin="5" FontSize="20" Foreground="White" TextAlignment="Center">
+                    <TextBlock.Effect>
+                        <DropShadowEffect Color="Black" BlurRadius="10" ShadowDepth="2" Opacity="1" />
+                    </TextBlock.Effect>
+                </TextBlock>
+                
+                <TextBlock x:Name="Stock1Change" Text="0" Margin="5" FontSize="20" Foreground="White" TextAlignment="Center">
+                    <TextBlock.Effect>
+                        <DropShadowEffect Color="Black" BlurRadius="10" ShadowDepth="2" Opacity="1" />
+                    </TextBlock.Effect>
+                </TextBlock>
+                
+            </StackPanel>
+        </Border>
+        
+        <Border x:Name="Border2Border" Grid.Row="0" Grid.Column="1" BorderBrush="Black" BorderThickness="3" Background="Gray">
+            <StackPanel x:Name="Stock2Panel" HorizontalAlignment="Center" VerticalAlignment="Center">
+                
+                <TextBlock Text="PKO BP" Margin="5" FontSize="20" Foreground="White" TextAlignment="Center">
+                    <TextBlock.Effect>
+                        <DropShadowEffect Color="Black" BlurRadius="10" ShadowDepth="2" Opacity="1" />
+                    </TextBlock.Effect>
+                </TextBlock>
+                
+                <TextBlock x:Name="Stock2Value" Text="40 ZL"  Margin="5" FontSize="20" Foreground="White" TextAlignment="Center">
+                    <TextBlock.Effect>
+                        <DropShadowEffect Color="Black" BlurRadius="10" ShadowDepth="2" Opacity="1" />
+                    </TextBlock.Effect>
+                </TextBlock>
+                
+                <TextBlock x:Name="Stock2Change" Text="0" Margin="5" FontSize="20" Foreground="White" TextAlignment="Center">
+                    <TextBlock.Effect>
+                        <DropShadowEffect Color="Black" BlurRadius="10" ShadowDepth="2" Opacity="1" />
+                    </TextBlock.Effect>
+                </TextBlock>
+                
+            </StackPanel>
+        </Border>
+        
+        
+        
+        
+        <Border x:Name="Border3Border" Grid.Row="1" Grid.Column="0" BorderBrush="Black" BorderThickness="3" Background="Gray">
+            <StackPanel x:Name="Stock3Panel" HorizontalAlignment="Center" VerticalAlignment="Center">
+                
+                <TextBlock Text="LOTOS" Margin="5" FontSize="20" Foreground="White" TextAlignment="Center">
+                    <TextBlock.Effect>
+                        <DropShadowEffect Color="Black" BlurRadius="10" ShadowDepth="2" Opacity="1" />
+                    </TextBlock.Effect>
+                </TextBlock>
+                
+                <TextBlock x:Name="Stock3Value" Text="95 ZL"  Margin="5" FontSize="20" Foreground="White" TextAlignment="Center">
+                    <TextBlock.Effect>
+                        <DropShadowEffect Color="Black" BlurRadius="10" ShadowDepth="2" Opacity="1" />
+                    </TextBlock.Effect>
+                </TextBlock>
+                
+                <TextBlock x:Name="Stock3Change" Text="0" Margin="5" FontSize="20" Foreground="White" TextAlignment="Center">
+                    <TextBlock.Effect>
+                        <DropShadowEffect Color="Black" BlurRadius="10" ShadowDepth="2" Opacity="1" />
+                    </TextBlock.Effect>
+                </TextBlock>
+                
+            </StackPanel>
+        </Border>
+        
+        
+        
+        
+        <Border x:Name="Border4Border" Grid.Row="1" Grid.Column="1" BorderBrush="Black" BorderThickness="3" Background="Gray">
+            <StackPanel x:Name="Stock4Panel" HorizontalAlignment="Center" VerticalAlignment="Center">
+                
+                <TextBlock Text="ORLEN" Margin="5" FontSize="20" Foreground="White" TextAlignment="Center">
+                    <TextBlock.Effect>
+                        <DropShadowEffect Color="Black" BlurRadius="10" ShadowDepth="2" Opacity="1" />
+                    </TextBlock.Effect>
+                </TextBlock>
+                
+                <TextBlock x:Name="Stock4Value" Text="100 ZL"  Margin="5" FontSize="20" Foreground="White" TextAlignment="Center">
+                    <TextBlock.Effect>
+                        <DropShadowEffect Color="Black" BlurRadius="10" ShadowDepth="2" Opacity="1" />
+                    </TextBlock.Effect>
+                </TextBlock>
+                
+                <TextBlock x:Name="Stock4Change" Text="0" Margin="5" FontSize="20" Foreground="White" TextAlignment="Center">
+                    <TextBlock.Effect>
+                        <DropShadowEffect Color="Black" BlurRadius="10" ShadowDepth="2" Opacity="1" />
+                    </TextBlock.Effect>
+                </TextBlock>
+                
+            </StackPanel>
+        </Border>
+        
+    </Grid>
+</Window>
