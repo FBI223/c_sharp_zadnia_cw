@@ -1,0 +1,45 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\msztu\\Desktop\\UJ_ZIMOWY_25\\PEGAZ\\PCSHARP\\c_sharp_zadnia_cw\\9\\BLAZOR9\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\BLAZOR9.bundle.scp.css",
+      "PackagePath": "staticwebassets\\BLAZOR9.7qld1igw2l.bundle.scp.css"
+    },
+    {
+      "Id": "C:\\Users\\msztu\\Desktop\\UJ_ZIMOWY_25\\PEGAZ\\PCSHARP\\c_sharp_zadnia_cw\\9\\BLAZOR9\\wwwroot\\app.css",
+      "PackagePath": "staticwebassets\\app.css"
+    },
+    {
+      "Id": "C:\\Users\\msztu\\Desktop\\UJ_ZIMOWY_25\\PEGAZ\\PCSHARP\\c_sharp_zadnia_cw\\9\\BLAZOR9\\wwwroot\\bootstrap\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css"
+    },
+    {
+      "Id": "C:\\Users\\msztu\\Desktop\\UJ_ZIMOWY_25\\PEGAZ\\PCSHARP\\c_sharp_zadnia_cw\\9\\BLAZOR9\\wwwroot\\bootstrap\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "C:\\Users\\msztu\\Desktop\\UJ_ZIMOWY_25\\PEGAZ\\PCSHARP\\c_sharp_zadnia_cw\\9\\BLAZOR9\\wwwroot\\favicon.png",
+      "PackagePath": "staticwebassets\\favicon.png"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.BLAZOR9.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.BLAZOR9.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.BLAZOR9.props",
+      "PackagePath": "build\\BLAZOR9.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.BLAZOR9.props",
+      "PackagePath": "buildMultiTargeting\\BLAZOR9.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.BLAZOR9.props",
+      "PackagePath": "buildTransitive\\BLAZOR9.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

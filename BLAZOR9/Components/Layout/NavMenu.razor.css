@@ -1,0 +1,16 @@
+.nav-item {
+    font-size: 1rem;
+    display: inline-block;
+    padding: 0.5rem 1rem;
+}
+
+    .nav-item ::deep .nav-link {
+        display: inline-flex;
+        align-items: center;
+        color: #000;
+    }
+
+    .nav-item ::deep a.active {
+        background-color: rgba(0, 0, 0, 0.1);
+        color: #333;
+    }

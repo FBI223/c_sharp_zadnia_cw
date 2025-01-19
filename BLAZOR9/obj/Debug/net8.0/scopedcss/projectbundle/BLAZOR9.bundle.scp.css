@@ -1,0 +1,84 @@
+/* _content/BLAZOR9/Components/Layout/MainLayout.razor.rz.scp.css */
+.page[b-80wg4afufo] {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+main[b-80wg4afufo] {
+    flex: 1;
+}
+
+.top-row[b-80wg4afufo] {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 3.5rem;
+    background-color: #f7f7f7;
+    border-bottom: 1px solid #d6d5d5;
+    padding: 0 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.navbar[b-80wg4afufo] {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.nav-item[b-80wg4afufo] {
+    color: #333;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    transition: background-color 0.3s ease;
+}
+
+    .nav-item:hover[b-80wg4afufo] {
+        background-color: rgba(0, 0, 0, 0.1);
+        border-radius: 4px;
+    }
+/* _content/BLAZOR9/Components/Layout/NavMenu.razor.rz.scp.css */
+.nav-item[b-zle87eja2l] {
+    font-size: 1rem;
+    display: inline-block;
+    padding: 0.5rem 1rem;
+}
+
+    .nav-item[b-zle87eja2l]  .nav-link {
+        display: inline-flex;
+        align-items: center;
+        color: #000;
+    }
+
+    .nav-item[b-zle87eja2l]  a.active {
+        background-color: rgba(0, 0, 0, 0.1);
+        color: #333;
+    }
+/* _content/BLAZOR9/Components/Pages/Fetcher.razor.rz.scp.css */
+.grid-container[b-ajbyr4jgqd] {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    background-color: #2196F3;
+    padding: 10px;
+}
+
+.grid-item[b-ajbyr4jgqd] {
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    font-size: 30px;
+    text-align: center;
+}
+
+
+    .grid-item a[b-ajbyr4jgqd] {
+        text-decoration: none;
+        color: #007bff;
+        font-weight: bold;
+    }
+
+        .grid-item a:hover[b-ajbyr4jgqd] {
+            text-decoration: underline;
+        }

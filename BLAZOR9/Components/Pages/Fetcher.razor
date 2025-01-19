@@ -1,0 +1,62 @@
+﻿@page "/fetcher"
+
+@using BLAZOR9
+@rendermode InteractiveServer
+
+<h3>Bibliotek moich stron</h3>
+
+<p>Dodaj stronę, wpisując adres URL, a następnie kliknij „+”</p>
+
+<div>
+    <input type="text" @bind="PageUrl" placeholder="Wpisz URL strony" />
+    <button class="btn btn-primary" @onclick="AddPage">+</button>
+</div>
+
+<h1>@LastAddedPage</h1>
+
+<div class="grid-container">
+    @foreach (var item in Pages)
+    {
+        <div class="grid-item" @key="item.Url">
+            <!-- Link otwierający stronę w nowej karcie -->
+            <a href="@item.Url" target="_blank" rel="noopener noreferrer">@item.Name</a>
+        </div>
+    }
+</div>
+
+@code {
+    private string PageUrl { get; set; }
+    private string LastAddedPage { get; set; }
+    private List<Page> Pages { get; set; } = new List<Page>();
+
+    private void AddPage()
+    {
+        Console.WriteLine("dodano ");
+
+        if (!string.IsNullOrWhiteSpace(PageUrl))
+        {
+            if (!PageUrl.StartsWith("http://") && !PageUrl.StartsWith("https://"))
+            {
+                PageUrl = "http://" + PageUrl;
+            }
+
+            string name = ExtractDomainName(PageUrl);
+            Pages.Add(new Page { Url = PageUrl, Name = name });
+            LastAddedPage = name;
+            PageUrl = string.Empty;
+        }
+    }
+
+    private string ExtractDomainName(string url)
+    {
+        var cleanUrl = url.Replace("http://", "").Replace("https://", "").Replace("www.", "");
+        int endIndex = cleanUrl.IndexOf('/');
+        return endIndex > 0 ? cleanUrl.Substring(0, endIndex) : cleanUrl;
+    }
+
+    public class Page
+    {
+        public string Url { get; set; }
+        public string Name { get; set; }
+    }
+}

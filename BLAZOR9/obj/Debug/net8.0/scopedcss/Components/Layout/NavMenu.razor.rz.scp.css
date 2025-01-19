@@ -1,0 +1,16 @@
+.nav-item[b-zle87eja2l] {
+    font-size: 1rem;
+    display: inline-block;
+    padding: 0.5rem 1rem;
+}
+
+    .nav-item[b-zle87eja2l]  .nav-link {
+        display: inline-flex;
+        align-items: center;
+        color: #000;
+    }
+
+    .nav-item[b-zle87eja2l]  a.active {
+        background-color: rgba(0, 0, 0, 0.1);
+        color: #333;
+    }
